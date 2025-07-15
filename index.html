@@ -541,14 +541,15 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: 'Las Grandes Fiestas Populares: Competencia Masiva', content: 'Eventos como las Fiestas de Zapote y Palmares son una competencia directa y abrumadora. La Romería (1-2 de agosto) paraliza la actividad social. Estas fechas son de altísimo riesgo, aunque abren la puerta a la contraprogramación.' },
         { title: 'El Fenómeno "Sillón-Ball": Eventos Deportivos', content: 'Partidos clave de "La Sele", finales del torneo local y eventos como la final de la Champions League o el Super Bowl mantienen a la audiencia en casa. Dado que sus eventos inician post 8:00 PM, los partidos vespertinos representan un riesgo menor (Amarillo), pues el público puede salir después. Sin embargo, los partidos en horario estelar (post 7:00 PM) siguen siendo un riesgo alto (Rojo) por el conflicto directo.' },
         { title: 'El Escenario Competitivo: La Batalla por la Atención', content: 'Mega-conciertos en recintos como el Estadio Nacional o Parque Viva consumen el presupuesto de ocio y la atención del mercado para ese fin de semana. Es crucial monitorear los anuncios de nuevos eventos y analizar el solapamiento de audiencias.' },
-        { title: 'El Factor Político: Elecciones Nacionales 2026', content: 'Las elecciones generales (1 de febrero y posible segunda ronda el 5 de abril de 2026) dominarán la atención pública. Los fines de semana de las elecciones son de nula actividad comercial y deben marcarse como de riesgo máximo.' }
+        { title: 'El Factor Político: Elecciones Nacionales 2026', content: 'Las elecciones generales (1 de febrero y posible segunda ronda el 5 de abril de 2026) dominarán la atención pública. Los fines de semana de las elecciones son de nula actividad comercial y deben marcarse como de riesgo máximo.' },
+        { title: 'Análisis del Público: Actual vs. Potencial', content: 'Tus datos demográficos revelan dos perfiles: 1) **Público Actual (Seguidores):** Un núcleo leal, mayoritariamente femenino (64-71%), con edades entre 35-54 años y concentrado en la GAM. Este perfil valida la estrategia de enfocar esfuerzos en fechas de celebración familiar (Día de la Madre/Padre) y quincenas. 2) **Público Potencial (Alcance):** Un mercado mucho más amplio y joven (25-44 años), con una distribución de género equitativa y presencia nacional. Para atraer a este grupo, se podrían considerar eventos con artistas de géneros más actuales o promociones específicas para un público más joven en fechas de riesgo medio (amarillas).' }
     ];
 
     const climateData = [
         { month: 'Enero', risk: '🟢', justification: 'Plena temporada seca. Muy baja probabilidad de lluvia. Planificar con confianza.' },
         { month: 'Febrero', risk: '🟢', justification: 'Plena temporada seca. Muy baja probabilidad de lluvia. Planificar con confianza.' },
         { month: 'Marzo', risk: '🟢', justification: 'Plena temporada seca. Muy baja probabilidad de lluvia. Planificar con confianza.' },
-        { month: 'Abril', risk: '�', justification: 'Final de la temporada seca. El riesgo de lluvia sigue siendo bajo. Planificar con confianza.' },
+        { month: 'Abril', risk: '🟢', justification: 'Final de la temporada seca. El riesgo de lluvia sigue siendo bajo. Planificar con confianza.' },
         { month: 'Mayo', risk: '🟡', justification: 'Inicio de la temporada lluviosa. Aumenta la probabilidad de aguaceros vespertinos. Tener un Plan B (carpas).' },
         { month: 'Junio', risk: '🟡', justification: 'Plena temporada lluviosa. Alta probabilidad de lluvias por la tarde/noche. Plan B es esencial.' },
         { month: 'Julio', risk: '🟡', justification: 'Temporada lluviosa. Posibilidad del "Veranillo de San Juan" pero no es garantizado. Plan B es esencial.' },
@@ -661,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(data.cat === 'blue') {
                 emoji = '🔵'; statusText = 'Oportunidad Alta'; colorClass = 'text-blue-800';
             } else if (data.cat === 'yellow') {
-                emoji = '🟡'; statusText = 'Riesgo Medio'; colorClass = 'text-yellow-600';
+                emoji = '�'; statusText = 'Riesgo Medio'; colorClass = 'text-yellow-600';
             } else if (data.cat === 'orange') {
                 emoji = '🟠'; statusText = 'Riesgo Alto'; colorClass = 'text-orange-700';
             } else if (data.cat === 'teal') {
