@@ -298,21 +298,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modifique estos valores para cambiar la paleta de colores de toda la aplicación.
     // =================================================================================
     const colorPalette = {
-        opportunityHigh: {
-            bg: '#0072B2', // Azul Intenso
-            text: '#FFFFFF'
-        },
-        opportunityMedium: {
-            bg: '#E69F00', // Naranja-Dorado
-            text: '#FFFFFF'
-        },
-        opportunityLow: {
-            bg: '#D55E00', // Rojo Bermellón
-            text: '#FFFFFF'
-        },
-        payday: {
+        opportunityHigh: { // cat: 'green'
             bg: '#009E73', // Verde Azulado (Teal)
-            text: '#FFFFFF'
+            text: '#FFFFFF',
+            name: 'Oportunidad Alta',
+            emoji: '🟢'
+        },
+        opportunityMedium: { // cat: 'yellow'
+            bg: '#DDC200', // Amarillo Oscuro
+            text: '#000000',
+            name: 'Riesgo Medio',
+            emoji: '🟡'
+        },
+        opportunityLow: { // cat: 'red'
+            bg: '#D55E00', // Rojo Bermellón
+            text: '#FFFFFF',
+            name: 'Riesgo Alto',
+            emoji: '🔴'
+        },
+        payday: { // cat: 'blue'
+            bg: '#0072B2', // Azul Intenso
+            text: '#FFFFFF',
+            name: 'Día de Pago',
+            emoji: '🔵'
         }
     };
 
@@ -694,18 +702,24 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = `<h4 class="font-bold text-lg text-gray-800 capitalize">${formattedDate}</h4>`;
         
         if (data) {
-            let emoji, colorClass, statusText;
+            let categoryInfo;
             if(data.cat === 'green') {
-                emoji = '🟢'; statusText = 'Oportunidad Alta'; colorClass = 'text-green-700';
+                categoryInfo = colorPalette.opportunityHigh;
             } else if (data.cat === 'yellow') {
-                emoji = '🟡'; statusText = 'Riesgo Medio'; colorClass = 'text-yellow-600';
+                categoryInfo = colorPalette.opportunityMedium;
             } else if (data.cat === 'red') {
-                emoji = '🔴'; statusText = 'Riesgo Alto'; colorClass = 'text-red-700';
+                categoryInfo = colorPalette.opportunityLow;
             } else if (data.cat === 'blue') {
-                emoji = '🔵'; statusText = 'Día de Pago'; colorClass = 'text-blue-700';
+                categoryInfo = colorPalette.payday;
             }
-            html += `<p class="font-semibold ${colorClass}">${emoji} ${statusText}</p>`;
-            html += `<p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Justificación:</span> ${data.reason}</p>`;
+            
+            if (categoryInfo) {
+                // Create a styled span to act as a color-correct circle instead of using a text emoji
+                const colorCircle = `<span style="display: inline-block; width: 0.8em; height: 0.8em; border-radius: 50%; background-color: ${categoryInfo.bg}; margin-right: 0.5em; vertical-align: -0.1em;"></span>`;
+                html += `<p class="font-semibold flex items-center" style="color: ${categoryInfo.bg};">${colorCircle}${categoryInfo.name}</p>`;
+                html += `<p class="text-sm text-gray-600 mt-2"><span class="font-semibold">Justificación:</span> ${data.reason}</p>`;
+            }
+
         } else {
             const dayOfWeek = date.getDay();
             if (dayOfWeek === 5 || dayOfWeek === 6) {
