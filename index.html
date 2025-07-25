@@ -343,8 +343,8 @@
                     <h2 class="text-2xl md:text-3xl font-bold text-center mb-4 dark-mode-text-header">Recomendaciones Estratégicas</h2>
                      <p class="text-center dark-mode-text-muted mb-8">Aplica estas tácticas para maximizar resultados en fechas de alta oportunidad y mitigar riesgos en las más complejas. La clave no es solo saber *cuándo* actuar, sino *cómo* hacerlo.</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                        <div class="bg-gray-800 border-l-4 border-green-600 text-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                            <h3 id="strategy-green-title" class="font-bold text-xl mb-3 flex items-center"><span class="text-3xl mr-3">🟢</span> Fechas Verdes: Maximizar</h3>
+                        <div id="strategy-green-card" class="bg-gray-800 border-l-4 text-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <h3 id="strategy-green-title-text" class="font-bold text-xl mb-3 flex items-center"><span class="text-3xl mr-3">🟢</span> Fechas Verdes: Maximizar</h3>
                             <ul class="list-disc list-inside space-y-2 text-sm">
                                 <li>Invertir en artistas de mayor convocatoria y costo.</li>
                                 <li>Lanzar campañas de marketing agresivas y con antelación.</li>
@@ -361,8 +361,8 @@
                                 <li>Usar promociones tácticas (ej. 2x1 en cócteles) para incentivar la visita.</li>
                             </ul>
                         </div>
-                         <div class="bg-gray-800 border-l-4 border-red-600 text-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                            <h3 id="strategy-red-title" class="font-bold text-xl mb-3 flex items-center"><span class="text-3xl mr-3">🔴</span> Fechas Rojas: Mitigar</h3>
+                         <div id="strategy-red-card" class="bg-gray-800 border-l-4 text-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <h3 id="strategy-red-title-text" class="font-bold text-xl mb-3 flex items-center"><span class="text-3xl mr-3">🔴</span> Fechas Rojas: Mitigar</h3>
                              <ul class="list-disc list-inside space-y-2 text-sm">
                                 <li>Considerar no programar eventos abiertos. Promover el local para eventos privados.</li>
                                 <li>Optar por programación de muy bajo costo (músicos de la casa, talento emergente).</li>
@@ -641,7 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const climateData = [
         { month: 'Enero', risk: '🟢', justification: 'Plena temporada seca. Muy baja probabilidad de lluvia. Planificar con confianza.' },
-        { month: 'Febrero', risk: '�', justification: 'Plena temporada seca. Muy baja probabilidad de lluvia. Planificar con confianza.' },
+        { month: 'Febrero', risk: '🟢', justification: 'Plena temporada seca. Muy baja probabilidad de lluvia. Planificar con confianza.' },
         { month: 'Marzo', risk: '🟢', justification: 'Plena temporada seca. Muy baja probabilidad de lluvia. Planificar con confianza.' },
         { month: 'Abril', risk: '🟢', justification: 'Final de la temporada seca. El riesgo de lluvia sigue siendo bajo. Planificar con confianza.' },
         { month: 'Mayo', risk: '🟡', justification: 'Inicio de la temporada lluviosa. Aumenta la probabilidad de aguaceros vespertinos. Tener un Plan B (carpas).' },
@@ -852,7 +852,7 @@ document.addEventListener('DOMContentLoaded', () => {
             year2026Btn.classList.add(isLightMode ? 'year-btn-inactive-light' : 'year-btn-inactive-dark');
         } else { // currentYear === 2026
             year2026Btn.classList.add(isLightMode ? 'year-btn-active-light' : 'year-btn-active-dark');
-            year205Btn.classList.add(isLightMode ? 'year-btn-inactive-light' : 'year-btn-inactive-dark');
+            year2025Btn.classList.add(isLightMode ? 'year-btn-inactive-light' : 'year-btn-inactive-dark');
         }
     }
 
@@ -1295,22 +1295,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to update strategy card titles
     function updateStrategyCardTitles() {
-        const strategyGreenTitle = document.getElementById('strategy-green-title');
-        const strategyRedTitle = document.getElementById('strategy-red-title');
+        const strategyGreenCard = document.getElementById('strategy-green-card');
+        const strategyRedCard = document.getElementById('strategy-red-card');
+        const strategyGreenTitleText = document.getElementById('strategy-green-title-text');
+        const strategyRedTitleText = document.getElementById('strategy-red-title-text');
 
         if (isColorblindMode) {
-            if (strategyGreenTitle) {
-                strategyGreenTitle.innerHTML = `<span class="text-3xl mr-3">🟢</span> Fechas Púrpuras: Maximizar`;
+            if (strategyGreenCard) {
+                strategyGreenCard.style.borderColor = currentActiveColorPalette.opportunityHigh.bg;
             }
-            if (strategyRedTitle) {
-                strategyRedTitle.innerHTML = `<span class="text-3xl mr-3">🔴</span> Fechas Naranjas: Mitigar`;
+            if (strategyGreenTitleText) {
+                strategyGreenTitleText.innerHTML = `<span class="text-3xl mr-3">🟢</span> Fechas Púrpuras: Maximizar`;
+            }
+            if (strategyRedCard) {
+                strategyRedCard.style.borderColor = currentActiveColorPalette.opportunityLow.bg;
+            }
+            if (strategyRedTitleText) {
+                strategyRedTitleText.innerHTML = `<span class="text-3xl mr-3">🔴</span> Fechas Naranjas: Mitigar`;
             }
         } else {
-            if (strategyGreenTitle) {
-                strategyGreenTitle.innerHTML = `<span class="text-3xl mr-3">🟢</span> Fechas Verdes: Maximizar`;
+            if (strategyGreenCard) {
+                strategyGreenCard.style.borderColor = defaultColorPalette.opportunityHigh.bg;
             }
-            if (strategyRedTitle) {
-                strategyRedTitle.innerHTML = `<span class="text-3xl mr-3">🔴</span> Fechas Rojas: Mitigar`;
+            if (strategyGreenTitleText) {
+                strategyGreenTitleText.innerHTML = `<span class="text-3xl mr-3">🟢</span> Fechas Verdes: Maximizar`;
+            }
+            if (strategyRedCard) {
+                strategyRedCard.style.borderColor = defaultColorPalette.opportunityLow.bg;
+            }
+            if (strategyRedTitleText) {
+                strategyRedTitleText.innerHTML = `<span class="text-3xl mr-3">🔴</span> Fechas Rojas: Mitigar`;
             }
         }
     }
@@ -1346,4 +1360,3 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-�
